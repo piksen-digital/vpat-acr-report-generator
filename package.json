@@ -1,0 +1,25 @@
+{
+  "name": "vpat-acr-report-generator",
+  "version": "0.1.0",
+  "description": "Evidence-backed draft ACR / VPAT report generator (WCAG 2.2, EN 301 549, VPAT 2.5Rev)",
+  "scripts": {
+    "start": "npm run start:dev",
+    "start:dev": "tsx src/main.ts",
+    "start:prod": "node dist/main.js",
+    "build": "tsc",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "apify": "^3.4.0",
+    "axe-core": "^4.10.0",
+    "crawlee": "^3.13.0",
+    "docx": "^9.0.0",
+    "playwright": "^1.50.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}
