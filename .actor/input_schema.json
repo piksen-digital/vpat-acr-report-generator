@@ -1,0 +1,63 @@
+{
+  "title": "VPAT/ACR Report Generator input",
+  "description": "Scan pages with axe-core and generate an evidence-backed draft ACR mapped to WCAG 2.2 A/AA, EN 301 549 and VPAT 2.5Rev criteria.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "editor": "requestListSources",
+      "prefill": [{ "url": "https://example.com" }],
+      "description": "Pages to scan. The Actor crawls further pages on the same hostname up to Max pages. Each scanned page is charged as one page-scanned event ($0.01)."
+    },
+    "maxPages": {
+      "title": "Max pages",
+      "type": "integer",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 200,
+      "description": "Hard cap on pages scanned per report."
+    },
+    "edition": {
+      "title": "VPAT edition",
+      "type": "string",
+      "enum": ["508", "EU", "INT", "WCAG"],
+      "default": "EU",
+      "description": "Which VPAT 2.5Rev edition the report targets. EU adds EN 301 549 clause mapping, needed for EAA-related procurement."
+    },
+    "conformanceLevel": {
+      "title": "Conformance level",
+      "type": "string",
+      "enum": ["A", "AA"],
+      "default": "AA",
+      "description": "WCAG 2.2 level to evaluate."
+    },
+    "includeScreenshots": {
+      "title": "Include screenshots",
+      "type": "boolean",
+      "default": true,
+      "description": "Save a full-page screenshot per scanned page as evidence in the Key-Value Store."
+    },
+    "reportFormat": {
+      "title": "Report formats",
+      "type": "array",
+      "enum": ["docx", "md"],
+      "uniqueItems": true,
+      "default": ["docx", "md"],
+      "description": "Report formats to produce. Markdown and DOCX both need no external files."
+    },
+    "reportMetadata": {
+      "title": "Report header details",
+      "type": "object",
+      "description": "Vendor and product information printed in the report header.",
+      "properties": {
+        "companyName": { "title": "Company name", "type": "string", "description": "Vendor company name for the ACR header." },
+        "productName": { "title": "Product name", "type": "string", "description": "Product the ACR describes." },
+        "productVersion": { "title": "Product version", "type": "string", "description": "Version of the product evaluated." },
+        "contactEmail": { "title": "Contact email", "type": "string", "description": "Contact for accessibility questions." }
+      }
+    }
+  },
+  "required": ["startUrls"]
+}

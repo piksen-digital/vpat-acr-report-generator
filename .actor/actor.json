@@ -1,0 +1,8 @@
+{
+  "actorSpecification": 1,
+  "name": "vpat-acr-report-generator",
+  "title": "VPAT/ACR Report Generator",
+  "description": "Scans a website with axe-core and generates an evidence-backed draft ACR mapped to WCAG 2.2, EN 301 549 and VPAT 2.5Rev criteria.",
+  "isPublic": false,
+  "input": "input_schema.json"
+}
