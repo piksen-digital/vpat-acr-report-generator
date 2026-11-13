@@ -323,7 +323,7 @@ async function run(): Promise<void> {
             // limit flag; when the user's spend cap is hit, stop scanning and
             // finish the report with what we have instead of dying mid-run.
             // (Verify the result field name against your apify SDK version.)
-            const charge = await Actor.charge('page-scanned');
+            const charge = await Actor.charge({ eventName: 'page-scanned' });
             if ((charge as unknown as { isLimitReached?: boolean })?.isLimitReached) {
                 limitHit = true;
                 log.warning('Spend cap reached — no more pages will be scanned.');
@@ -338,7 +338,7 @@ async function run(): Promise<void> {
                 url: request.url, violations: [], passes: [], incomplete: [],
                 error: `Navigation failed: ${String(error).slice(0, 200)}`,
             });
-            await Actor.charge('page-scanned').catch(() => undefined);
+            await Actor.charge({ eventName: 'page-scanned' }).catch(() => undefined);
         },
     });
 
@@ -354,7 +354,7 @@ async function run(): Promise<void> {
     const rows = relevant.map((c) => aggregate(c, scans));
 
     // Primary value event — one report generated.
-    await Actor.charge('report-generated');
+    await Actor.charge({ eventName: 'report-generated' });
 
     const kv = await KeyValueStore.open();
     const base = `acr-report-${new Date().toISOString().slice(0, 10)}`;
