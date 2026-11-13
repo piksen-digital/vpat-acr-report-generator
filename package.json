@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run start:dev",
     "start:dev": "tsx src/main.ts",
-    "start:prod": "node dist/main.js",
+    "start:prod": "node dist/src/main.js",
     "build": "tsc",
     "test": "vitest run"
   },
