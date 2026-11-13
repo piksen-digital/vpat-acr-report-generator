@@ -35,7 +35,7 @@
     { "sc": "3.2.2", "name": "On Input", "level": "A", "en301549": "9.3.2.2", "axeTag": null, "automated": "none", "notes": "Manual" },
     { "sc": "3.2.6", "name": "Consistent Help", "level": "A", "en301549": "9.3.2.6", "axeTag": null, "automated": "none", "notes": "WCAG 2.2 SC - placement consistency across pages, manual" },
     { "sc": "3.3.1", "name": "Error Identification", "level": "A", "en301549": "9.3.3.1", "axeTag": null, "automated": "none", "notes": "Error behavior on submission - manual" },
-    { "sc": "3.3.2", "name": "Labels or Instructions", "level": "A", "en301549": "9.3.3.2", "axeTag": "wcag332", "automated": "partial", "notes": "Form labeling rules (label, select-name, accessible-name set); presence of instructions manual" },
+    { "sc": "3.3.2", "name": "Labels or Instructions", "level": "A", "en301549": "9.3.3.2", "axeTag": null, "automated": "none", "notes": "No axe rules carry wcag332; form-label violations surface under 4.1.2 (label rule, wcag412). Labels-or-instructions adequacy is manual." },
     { "sc": "3.3.7", "name": "Redundant Entry", "level": "A", "en301549": "9.3.3.7", "axeTag": null, "automated": "none", "notes": "WCAG 2.2 SC - multi-step flow behavior, manual" },
     { "sc": "4.1.2", "name": "Name, Role, Value", "level": "A", "en301549": "9.4.1.2", "axeTag": "wcag412", "automated": "partial", "notes": "ARIA validity and accessible-name rule set; state communication manual" },
     { "sc": "1.2.4", "name": "Captions (Live)", "level": "AA", "en301549": "9.1.2.4", "axeTag": null, "automated": "none", "notes": "Manual" },
