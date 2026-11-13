@@ -39,7 +39,7 @@
       "default": true,
       "description": "Save a full-page screenshot per scanned page as evidence in the Key-Value Store."
     },
-      "reportFormat": {
+    "reportFormat": {
       "title": "Report formats",
       "type": "array",
       "editor": "stringList",
@@ -47,7 +47,7 @@
       "prefill": ["docx", "md"],
       "description": "Report formats to produce. Allowed values: docx, md. Markdown and DOCX both need no external files."
     },
-        "reportMetadata": {
+    "reportMetadata": {
       "title": "Report header details",
       "type": "object",
       "editor": "schemaBased",
