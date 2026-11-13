@@ -279,6 +279,13 @@ async function run(): Promise<void> {
         maxConcurrency: 3,
         maxRequestsPerCrawl: maxPages,
         requestHandlerTimeoutSecs: 120,
+        browserPoolOptions: {
+            preLaunchHooks: [
+                (_pageId, launchContext) => {
+                    (launchContext.launchOptions as Record<string, unknown>).bypassCSP = true;
+                },
+            ],
+        },
 
         async requestHandler({ page, request, enqueueLinks }) {
             if (limitHit) return;
