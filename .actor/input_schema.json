@@ -39,17 +39,18 @@
       "default": true,
       "description": "Save a full-page screenshot per scanned page as evidence in the Key-Value Store."
     },
-    "reportFormat": {
+      "reportFormat": {
       "title": "Report formats",
       "type": "array",
-      "enum": ["docx", "md"],
-      "uniqueItems": true,
-      "default": ["docx", "md"],
-      "description": "Report formats to produce. Markdown and DOCX both need no external files."
+      "editor": "stringList",
+      "items": { "type": "string" },
+      "prefill": ["docx", "md"],
+      "description": "Report formats to produce. Allowed values: docx, md. Markdown and DOCX both need no external files."
     },
-    "reportMetadata": {
+        "reportMetadata": {
       "title": "Report header details",
       "type": "object",
+      "editor": "schemaBased",
       "description": "Vendor and product information printed in the report header.",
       "properties": {
         "companyName": { "title": "Company name", "type": "string", "description": "Vendor company name for the ACR header." },

@@ -287,22 +287,23 @@ async function run(): Promise<void> {
 
             // Inject axe-core and run it in the page. Map to plain objects so the
             // result serializes cleanly across the Playwright boundary.
+            // NOTE: scan code is passed as a STRING IIFE, not a closure — tsx/esbuild
+            // injects a __name() helper into serialized closures that doesn't exist
+            // in the browser context ("ReferenceError: __name is not defined").
             await page.addScriptTag({ path: AXE_PATH });
-            const results = await page.evaluate(async () => {
-                const axe = (window as unknown as { axe: { run: (n: unknown, o: unknown) => Promise<unknown> } }).axe;
-                const r = (await axe.run(document, { resultTypes: ['violations', 'passes', 'incomplete'] })) as {
-                    violations: any[]; passes: any[]; incomplete: any[];
-                };
-                const slim = (arr: any[]) => arr.map((x: any) => ({
+            const results = await page.evaluate(`(async () => {
+                const axe = window.axe;
+                const r = await axe.run(document, { resultTypes: ['violations', 'passes', 'incomplete'] });
+                const slim = (arr) => arr.map((x) => ({
                     id: x.id, help: x.help, impact: x.impact ?? null,
-                    tags: x.tags as string[], nodeCount: x.nodes?.length ?? 0,
+                    tags: x.tags, nodeCount: x.nodes?.length ?? 0,
                 }));
                 return {
                     violations: slim(r.violations ?? []),
                     passes: slim(r.passes ?? []),
                     incomplete: slim(r.incomplete ?? []),
                 };
-            });
+            })()`) as { violations: AxeFinding[]; passes: AxeFinding[]; incomplete: AxeFinding[] };
 
             const scan: PageScan = { url, ...results };
             if (includeScreenshots) {
