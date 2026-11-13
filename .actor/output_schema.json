@@ -1,0 +1,17 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "VPAT/ACR Draft Report & Criterion Dataset",
+  "description": "Evidence-backed draft Accessibility Conformance Report (DOCX and Markdown), full-page screenshots in Key-Value Store, and per-criterion WCAG 2.2 / EN 301 549 verdict rows in Dataset.",
+  "properties": {
+    "criterionResults": {
+      "type": "string",
+      "title": "Per-Criterion WCAG 2.2 / EN 301 549 Dataset",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    },
+    "reportFiles": {
+      "type": "string",
+      "title": "Draft ACR Reports (DOCX & Markdown) and Screenshots",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/keys"
+    }
+  }
+}
